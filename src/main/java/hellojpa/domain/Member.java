@@ -11,9 +11,8 @@ public class Member extends BaseEntity {
     @Column(name = "MEMBER_ID")
     private Long id;
     private String name;
-    private String city;
-    private String street;
-    private String zipcode;
+    @Embedded
+    private Address address;
 
     // 양방향 관계를 설정한다면 이렇게 하면 된다
     // 그러나 추천하지 않는다. 왜냐하면 주문에서 무엇이 궁금하다면 주문에서 시작하면 되는 것이 직관적이기 때문이다.
@@ -36,27 +35,19 @@ public class Member extends BaseEntity {
         this.name = name;
     }
 
-    public String getCity() {
-        return city;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public String getStreet() {
-        return street;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
